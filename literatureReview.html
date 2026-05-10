@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Literature Review - Smart Grid Security</title>
+<style>
+  :root {
+    --primary: #0d2b6b;
+    --primary-light: #1e4599;
+    --accent-blue: #185FA5;
+    --accent-green: #10b981;
+    --accent-purple: #6366f1;
+    --accent-gold: #f59e0b;
+    --bg-light: #f8fafd;
+    --white: #ffffff;
+    --text-main: #1a1a2e;
+    --text-muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    font-family: 'Inter', 'Google Sans', Roboto, sans-serif; 
+    color: var(--text-main); 
+    background: var(--white); 
+    line-height: 1.6;
+  }
+
+  /* Header Section */
+  .page-header {
+    background: radial-gradient(circle at top right, var(--primary-light), var(--primary));
+    color: var(--white);
+    padding: 80px 40px 60px;
+  }
+  .page-header .breadcrumb { 
+    font-size: 13px; 
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #8db4e8; 
+    margin-bottom: 12px; 
+  }
+  .page-header h1 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+  .page-header p { 
+    font-size: 18px; 
+    color: #c5d8f5; 
+    margin-top: 14px; 
+    max-width: 650px; 
+    font-weight: 300;
+  }
+
+  /* Section Styles */
+  .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--primary-light); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ""; height: 1px; width: 40px; background: var(--accent-blue); }
+  .section h2 { font-size: 28px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+
+  /* Approach Grid & Cards */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .approach-card {
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: 0.3s;
+  }
+  .approach-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+  
+  .approach-card-header {
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-ai { background: var(--accent-blue); }
+  .header-bc { background: var(--accent-green); }
+  .header-hy { background: var(--accent-purple); }
+
+  .approach-card-body { padding: 24px; }
+  .approach-card-body p { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
+
+  /* Limitation Box */
+  .limitation {
+    background: #fff1f2;
+    border-left: 4px solid #f43f5e;
+    border-radius: 4px;
+    padding: 12px 16px;
+  }
+  .limitation-label { 
+    font-weight: 800; font-size: 10px; color: #be123c; 
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; 
+  }
+  .limitation p { font-size: 13px; color: #9f1239; margin-bottom: 0; line-height: 1.4; }
+
+  /* Tables - Modern Look */
+  .table-wrap { 
+    background: white; border: 1px solid #eef2f7; border-radius: 12px; 
+    overflow: hidden; margin-top: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead tr { background: var(--primary); color: #fff; }
+  thead th { padding: 16px; text-align: left; font-weight: 600; }
+  tbody tr { border-bottom: 1px solid #f1f5f9; transition: background 0.2s; }
+  tbody tr:hover { background: #f8fafc; }
+  tbody td { padding: 14px 16px; vertical-align: top; }
+
+  /* Status Badges */
+  .badge {
+    display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 6px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+  }
+  .badge-high { background: #dcfce7; color: #166534; }
+  .badge-med  { background: #fef9c3; color: #854d0e; }
+  .badge-low  { background: #fee2e2; color: #991b1b; }
+
+  /* Research Gap Box */
+  .gap-box {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    border: 1px solid #fcd34d;
+    border-radius: 16px;
+    padding: 32px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gap-box::before {
+    content: "!"; position: absolute; right: -20px; top: -10px;
+    font-size: 150px; font-weight: 900; color: rgba(245, 158, 11, 0.1);
+  }
+  .gap-box h3 { font-size: 18px; font-weight: 700; color: #92400e; margin-bottom: 12px; }
+  .gap-box p { font-size: 15px; color: #b45309; max-width: 800px; line-height: 1.8; }
+
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="breadcrumb">Smart Grid Security › Research Landscape</div>
+  <h1>Literature Review</h1>
+  <p>Exploring the evolution of anomaly detection, blockchain protocols, and the integration of hybrid security frameworks.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">Research Streams</div>
+  <h2>Foundational Paradigms</h2>
+  
+  <div class="approach-grid">
+    <div class="approach-card">
+      <div class="approach-card-header header-ai">AI-Based Detection <span>🤖</span></div>
+      <div class="approach-card-body">
+        <p>Utilizes Deep Learning architectures (CNN/LSTM) to map spatial correlations and temporal dependencies. These models excel at recognizing patterns invisible to human operators.</p>
+        <div class="limitation">
+          <div class="limitation-label">Critical Limitation</div>
+          <p>Centralized dependency creates single points of failure and lacks immutable audit logs for forensic study.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="approach-card">
+      <div class="approach-card-header header-bc">Blockchain Security <span>🔗</span></div>
+      <div class="approach-card-body">
+        <p>Decentralizes trust using distributed ledgers. While excellent for data integrity, traditional consensus mechanisms struggle with the velocity of grid telemetry.</p>
+        <div class="limitation">
+          <div class="limitation-label">Critical Limitation</div>
+          <p>The "Latency Wall": PoW/PoS consensus delays are incompatible with sub-millisecond fault isolation requirements.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="approach-card">
+      <div class="approach-card-header header-hy">Hybrid Frameworks <span>⚡</span></div>
+      <div class="approach-card-body">
+        <p>Integrates AI detection with Blockchain logging. This seeks to balance the predictive power of neural networks with the security of a ledger.</p>
+        <div class="limitation">
+          <div class="limitation-label">Critical Limitation</div>
+          <p>Inefficient filtering leads to storage bottlenecks or significant synchronization lags across the network nodes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--bg-light); border-top:1px solid #eef2f7; border-bottom:1px solid #eef2f7;">
+  <div class="section">
+    <div class="section-label">Comparative Matrix</div>
+    <h2>State-of-the-Art Analysis</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Methodology</th>
+            <th>Tech Stack</th>
+            <th>Core Contribution</th>
+            <th>Current Barrier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CNN-LSTM Fusion</strong></td>
+            <td>Keras / IEEE 14-bus</td>
+            <td>Spatial-Temporal mapping</td>
+            <td>Inference overhead</td>
+          </tr>
+          <tr>
+            <td><strong>Lightweight DLT</strong></td>
+            <td>Solidity / Edge IoT</td>
+            <td>Secure Edge Auth</td>
+            <td>Scalability limits</td>
+          </tr>
+          <tr>
+            <td><strong>Energy Blockchain</strong></td>
+            <td>Ethereum / Web3</td>
+            <td>Auditability</td>
+            <td>High Latency</td>
+          </tr>
+          <tr>
+            <td><strong>AI-Chain Hybrid</strong></td>
+            <td>Python / SHA-256</td>
+            <td>Layered Security</td>
+            <td>Storage bloating</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Competitive Benchmarking</div>
+  <h2>The Trade-off Evaluation</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Framework</th>
+          <th>Real-time</th>
+          <th>Security</th>
+          <th>Scalability</th>
+          <th>Auditability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AI-Only</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-med">Medium</span></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>Blockchain-Only</td>
+          <td><span class="badge badge-low">Low</span></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+        <tr style="background:#f0f9ff; font-weight:700;">
+          <td>Proposed PoM Model</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-high">High</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gap-box">
+    <h3>The Identified Research Gap</h3>
+    <p>A fundamental tension exists in current literature: the higher the security (Blockchain), the lower the real-time responsiveness. Conversely, high-speed AI systems remain vulnerable to data poisoning. This work fills that void by introducing the <strong>Proof of Monitoring (PoM)</strong> consensus, allowing high-fidelity CNN-LSTM detections to be verified at speeds previously thought impossible in decentralized systems.</p>
+  </div>
+</div>
+
+</body>
+</html>
