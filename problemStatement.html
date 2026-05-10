@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Statement - Smart Grid Security</title>
+<style>
+  :root {
+    --primary: #0d2b6b;
+    --primary-light: #1e4599;
+    --accent-red: #e11d48; /* Alert/Problem Accent */
+    --bg-light: #f8fafd;
+    --white: #ffffff;
+    --text-main: #1a1a2e;
+    --text-muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body { 
+    font-family: 'Inter', 'Google Sans', Roboto, sans-serif; 
+    color: var(--text-main); 
+    background: var(--white); 
+    line-height: 1.6;
+  }
+
+  /* Page Header - Gradient Style */
+  .page-header {
+    background: radial-gradient(circle at top right, var(--primary-light), var(--primary));
+    color: var(--white);
+    padding: 80px 40px 60px;
+  }
+  .page-header .breadcrumb { 
+    font-size: 13px; 
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #8db4e8; 
+    margin-bottom: 12px; 
+  }
+  .page-header h1 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+  .page-header p { 
+    font-size: 18px; 
+    color: #c5d8f5; 
+    margin-top: 14px; 
+    max-width: 650px; 
+    font-weight: 300;
+  }
+
+  .section { padding: 80px 40px; max-width: 1000px; margin: 0 auto; }
+  
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--primary-light); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after {
+    content: ""; height: 1px; width: 40px; background: var(--accent-red);
+  }
+
+  .section h2 { font-size: 28px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+  .section p { font-size: 16px; color: var(--text-muted); margin-bottom: 18px; }
+
+  /* Highlighting the Core Statement */
+  .problem-box {
+    border-left: 5px solid var(--accent-red);
+    background: linear-gradient(to right, #fff5f5, var(--white));
+    border-radius: 4px;
+    padding: 30px;
+    margin: 40px 0;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--primary);
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  /* Threat Grid */
+  .threat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .threat-card {
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    padding: 28px;
+    background: var(--white);
+    transition: 0.3s;
+  }
+  .threat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    border-color: var(--accent-red);
+  }
+  .threat-tag {
+    display: inline-block;
+    background: #ffe4e6;
+    color: var(--accent-red);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .threat-card h3 { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+  .threat-card p { font-size: 14px; color: var(--text-muted); }
+
+  /* Challenge List */
+  .challenge-item {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    border-radius: 12px;
+    transition: 0.2s;
+  }
+  .challenge-item:hover { background: var(--bg-light); }
+  .challenge-num {
+    min-width: 38px; height: 38px;
+    background: var(--primary); color: var(--white);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700;
+  }
+  .challenge-item h3 { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+
+  /* Industry Pills */
+  .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .industry-pill {
+    background: var(--white);
+    border: 1px solid #eef2f7;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    transition: 0.3s;
+  }
+  .industry-pill:hover { border-color: var(--primary-light); background: var(--bg-light); }
+  .industry-pill span { display: block; font-size: 28px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="breadcrumb">Smart Grid Security › Problem Statement</div>
+  <h1>The Critical Vulnerability of Modern Grids</h1>
+  <p>Defining the gap between high-speed IoT data streams and secure, real-time decision making.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">Operational Reality</div>
+  <h2>The Trust Assumption Problem</h2>
+  <p>Smart grid systems rely on high-frequency data from Smart Meters and PMUs. While these sensors enable modern efficiency, they operate on three dangerous assumptions: that data is inherently trustworthy, communication is secure, and verification is instantaneous.</p>
+
+  <div class="problem-box">
+    "Detecting anomalies in real-time PMU streams requires overcoming the trifecta of adversarial conditions: sub-millisecond latency, immutable verification, and resource-constrained environments."
+  </div>
+
+  <p>With PMUs generating up to 120 samples per second, the margin for error is non-existent. A single hijacked data stream can trigger regional blackouts before a human operator can even blink.</p>
+</div>
+
+<div style="background:var(--bg-light); border-top:1px solid #eef2f7; border-bottom:1px solid #eef2f7;">
+  <div class="section">
+    <div class="section-label">The Threat Landscape</div>
+    <h2>Sophisticated Cyber-Physical Attacks</h2>
+    
+    <div class="threat-grid">
+      <div class="threat-card">
+        <span class="threat-tag">Data Integrity</span>
+        <h3>False Data Injection (FDI)</h3>
+        <p>Malicious actors manipulate telemetry to induce incorrect control actions, masking actual faults or creating phantom ones.</p>
+      </div>
+      <div class="threat-card">
+        <span class="threat-tag">Protocol Breach</span>
+        <h3>Replay Attacks</h3>
+        <p>Retransmitting valid historical data to blind detection systems, making the grid appear stable while a physical attack is in progress.</p>
+      </div>
+      <div class="threat-card">
+        <span class="threat-tag">Identity Theft</span>
+        <h3>PMU Spoofing</h3>
+        <p>Impersonating sensing devices to inject fabricated data directly into the state estimator, corrupting the grid's "brain."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">The Barrier</div>
+  <h2>Why Current Solutions Fall Short</h2>
+
+  <div class="challenge-list">
+    <div class="challenge-item">
+      <div class="challenge-num">1</div>
+      <div>
+        <h3>Centralized Fragility</h3>
+        <p>Cloud-based models create a "Single Point of Failure." If the cloud connection drops or is attacked, the grid loses its eyes.</p>
+      </div>
+    </div>
+    <div class="challenge-item">
+      <div class="challenge-num">2</div>
+      <div>
+        <h3>Non-Auditable Actions</h3>
+        <p>Standard ML models lack a tamper-proof "black box." Without an immutable audit trail, post-attack forensic analysis is unreliable.</p>
+      </div>
+    </div>
+    <div class="challenge-item">
+      <div class="challenge-num">3</div>
+      <div>
+        <h3>The Blockchain Latency Gap</h3>
+        <p>Traditional blockchains (PoW/PoS) are too slow. 200ms of consensus latency is an eternity when a transformer is about to explode.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--bg-light); border-top:1px solid #eef2f7;">
+  <div class="section">
+    <div class="section-label">Societal Impact</div>
+    <h2>Critical Sectors at Risk</h2>
+
+    <div class="industry-grid">
+      <div class="industry-pill"><span>⚡</span>Electrical Utilities</div>
+      <div class="industry-pill"><span>🏭</span>Industrial IoT</div>
+      <div class="industry-pill"><span>☀️</span>Renewable Energy</div>
+      <div class="industry-pill"><span>🏙️</span>Smart Cities</div>
+      <div class="industry-pill"><span>🏥</span>Critical Infra</div>
+      <div class="industry-pill"><span>🔋</span>Energy Storage</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
