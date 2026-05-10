@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposed Solution - Smart Grid Security</title>
+
+<style>
+  :root {
+    --primary: #0d2b6b;
+    --primary-light: #1e4599;
+    --accent: #10b981; /* Success/Solution Green */
+    --bg-light: #f8fafd;
+    --white: #ffffff;
+    --text-main: #1a1a2e;
+    --text-muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Google Sans', Roboto, Arial, sans-serif;
+    color: var(--text-main);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* Page Header - Consistent with other pages */
+  .page-header {
+    background: radial-gradient(circle at top right, var(--primary-light), var(--primary));
+    color: var(--white);
+    padding: 80px 40px 60px;
+  }
+
+  .page-header .breadcrumb {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #8db4e8;
+    margin-bottom: 12px;
+  }
+
+  .page-header h1 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+
+  .page-header p {
+    font-size: 18px;
+    color: #c5d8f5;
+    margin-top: 14px;
+    max-width: 650px;
+    font-weight: 300;
+  }
+
+  .section {
+    padding: 80px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--primary-light); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ""; height: 1px; width: 40px; background: var(--accent); }
+
+  .section h2 { font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+
+  .section p { font-size: 16px; color: var(--text-muted); margin-bottom: 20px; }
+
+  /* Diagram Box - Modern Elevation */
+  .diagram-box {
+    margin: 40px 0;
+    background: var(--white);
+    border: 1px solid #eef2f7;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+  }
+
+  .diagram-box h3 {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .diagram-box img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
+
+  /* Workflow Step Styling */
+  .workflow-container { margin-top: 50px; border-left: 2px solid #eef2f7; padding-left: 30px; position: relative; }
+
+  .diagram-desc {
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  /* Step Numbers with Pulse Effect */
+  .diagram-desc::before {
+    content: "";
+    position: absolute;
+    left: -37px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+  }
+
+  .diagram-desc strong {
+    display: block;
+    color: var(--primary);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .diagram-desc p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .highlight { color: var(--primary-light); font-weight: 600; }
+
+</style>
+</head>
+
+<body>
+
+<div class="page-header">
+  <div class="breadcrumb">Smart Grid Security Project › Proposed Solution</div>
+  <h1>The PoM-AI Framework</h1>
+  <p>A unified architecture merging spatial-temporal deep learning with decentralized verification for immune-like grid security.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">System Architecture</div>
+  <h2>Proposed Design Strategy</h2>
+
+  <p>
+    The proposed solution shifts from reactive to <strong>proactive security</strong> by establishing a multi-layered defense pipeline. It integrates high-fidelity IoT sensing, hybrid AI inference, and a custom lightweight consensus mechanism.
+  </p>
+
+  <div class="diagram-box">
+    <h3><span>📊</span> Architecture Visualization</h3>
+    <img src="systemarchitecture.jpg" alt="System Architecture Overview">
+  </div>
+
+  <div class="workflow-container">
+    
+    <div class="diagram-desc">
+      <strong>1. Data Collection Layer</strong>
+      <p>Continuous acquisition of high-resolution telemetry (V, I, f, Load) via <span class="highlight">Phasor Measurement Units (PMUs)</span> and Smart Meters, providing the raw signal required for millisecond-level visibility.</p>
+    </div>
+
+    <div class="diagram-desc">
+      <strong>2. Preprocessing & Security Layer</strong>
+      <p>Data is normalized for neural network ingestion. Simultaneously, <span class="highlight">SHA-256 Hashing</span> creates an immutable fingerprint of the input, ensuring that the "truth" at the sensor remains the "truth" at the model.</p>
+    </div>
+
+    <div class="diagram-desc">
+      <strong>3. Feature Engineering</strong>
+      <p>The system intelligently maps <span class="highlight">Spatial Relationships</span> between nodes and <span class="highlight">Temporal Dynamics</span> over time, allowing the detection of complex, multi-stage grid attacks.</p>
+    </div>
+
+    <div class="diagram-desc">
+      <strong>4. Hybrid AI Inference (CNN-LSTM)</strong>
+      <p>Our core innovation: a dual-stream model where <strong>CNNs</strong> identify location-based faults and <strong>LSTMs</strong> identify time-based anomalies. Their fusion ensures maximum sensitivity to even the quietest adversarial signals.</p>
+    </div>
+
+    <div class="diagram-desc">
+      <strong>5. Prediction & Decision Module</strong>
+      <p>The model outputs a binary classification. Using soft-max probability, it determines if the current grid state is <strong>Normal (0)</strong> or represents a <strong>Fault (1)</strong> with high confidence levels.</p>
+    </div>
+
+    <div class="diagram-desc">
+      <strong>6. Blockchain Decision System</strong>
+      <p>Detected faults enter the <span class="highlight">Proof of Monitoring (PoM)</span> consensus. This decentralized layer ensures that fault logs are tamper-proof and verifiable by all authorized grid participants.</p>
+    </div>
+
+    <div class="diagram-desc" style="margin-bottom:0;">
+      <strong>7. Output & Automated Control</strong>
+      <p>The validated decision triggers immediate <span class="highlight">Node Isolation</span> and real-time dashboard alerts, enabling grid self-healing and an immutable audit trail for forensic review.</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
