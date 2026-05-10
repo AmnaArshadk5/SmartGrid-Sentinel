@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - Smart Grid Security</title>
+
+<style>
+  :root {
+    --primary: #0d2b6b;
+    --primary-light: #1e4599;
+    --accent: #00df9a; /* Tech Green accent */
+    --text-main: #1a1a2e;
+    --text-muted: #64748b;
+    --bg-light: #f8fafd;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Google Sans', Roboto, Arial, sans-serif;
+    color: var(--text-main);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* Hero Section with Mesh Gradient */
+  .hero {
+    background: radial-gradient(circle at top right, var(--primary-light), var(--primary));
+    color: var(--white);
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 100px;
+    background: linear-gradient(to top, var(--white), transparent);
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    max-width: 850px;
+    margin: 0 auto 24px;
+    line-height: 1.1;
+  }
+
+  .hero p {
+    font-size: 19px;
+    color: #c5d8f5;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* Section Layout */
+  .section {
+    padding: 80px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: "";
+    height: 1px;
+    width: 40px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+  }
+
+  /* Stat Grid - Refined */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+    background: var(--primary);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 50px;
+    box-shadow: 0 20px 40px rgba(13, 43, 107, 0.15);
+  }
+
+  .stat-item {
+    padding: 10px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-val {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-lbl {
+    font-size: 14px;
+    color: #8db4e8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Cards - Interactive Hover */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .card {
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    padding: 32px 24px;
+    background: var(--white);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.05);
+    border-color: var(--accent);
+  }
+
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(13, 43, 107, 0.05);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+  }
+
+  .card:hover .card-icon {
+    background: var(--primary);
+    color: var(--white);
+  }
+
+  .card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
+    .stat-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <h1>Securing the Future Grid with Hybrid AI & Blockchain</h1>
+  <p>
+    An integrated CNN-LSTM and Proof of Monitoring (PoM) framework for tamper-proof anomaly detection in next-generation power systems.
+  </p>
+</div>
+
+<div class="section">
+  <div class="section-label">System Overview</div>
+  <h2>Intelligence meets Resilience</h2>
+
+  <p>
+    Smart electrical grids are the backbone of modern society, yet they face an escalating landscape of cyber-physical threats. Our research bridges the gap between high-performance fault detection and decentralized trust.
+  </p>
+
+  <div class="stats">
+    <div class="stat-item">
+      <span class="stat-val">98.15%</span>
+      <span class="stat-lbl">Accuracy</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">0.998</span>
+      <span class="stat-lbl">AUC Score</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">&lt;1ms</span>
+      <span class="stat-lbl">Latency</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">-40%</span>
+      <span class="stat-lbl">Overhead</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Core Pillars</div>
+  <h2>Why this Solution?</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Real-time Logic</h3>
+      <p>Instantaneous detection of grid instabilities within milliseconds.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>Immutable Trust</h3>
+      <p>PoM Blockchain ensures audit trails cannot be altered by attackers.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>Hybrid Deep Learning</h3>
+      <p>Fused CNN-LSTM architecture for spatial and temporal precision.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📡</div>
+      <h3>Distributed IoT</h3>
+      <p>Seamlessly scales across thousands of smart meters and PMUs.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
