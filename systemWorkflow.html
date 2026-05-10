@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Workflow - Smart Grid Security</title>
+
+<style>
+  :root {
+    --primary: #0d2b6b;
+    --primary-light: #1e4599;
+    --accent-data: #444441;
+    --accent-security: #0F6E56;
+    --accent-ai: #534AB7;
+    --accent-decision: #BA7517;
+    --bg-light: #f8fafd;
+    --white: #ffffff;
+    --text-main: #1a1a2e;
+    --text-muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Google Sans', Roboto, sans-serif;
+    color: var(--text-main);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* Header Section */
+  .page-header {
+    background: radial-gradient(circle at top right, var(--primary-light), var(--primary));
+    color: var(--white);
+    padding: 80px 40px 60px;
+  }
+  .page-header .breadcrumb { 
+    font-size: 13px; 
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #8db4e8; 
+    margin-bottom: 12px; 
+  }
+  .page-header h1 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+  .page-header p { font-size: 18px; color: #c5d8f5; margin-top: 14px; max-width: 650px; font-weight: 300; }
+
+  /* Section Styles */
+  .section { padding: 80px 40px; max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--primary-light); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ""; height: 1px; width: 40px; background: var(--primary-light); }
+
+  /* Timeline Container */
+  .steps { margin-top: 50px; position: relative; }
+
+  .step {
+    display: flex;
+    gap: 24px;
+    padding: 30px;
+    margin-bottom: 20px;
+    background: var(--white);
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .step:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-color: var(--primary-light);
+  }
+
+  /* Connecting Line */
+  .step::after {
+    content: "";
+    position: absolute;
+    left: 51px;
+    top: 80px;
+    width: 2px;
+    height: 40px;
+    background: #eef2f7;
+  }
+  .step:last-child::after { display: none; }
+
+  /* Step Number Styling */
+  .step-num {
+    min-width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    z-index: 2;
+  }
+
+  .step-right { flex: 1; }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .step-right h3 { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+  .step-right p { font-size: 15px; color: var(--text-muted); }
+
+  .step-detail {
+    margin-top: 15px;
+    background: var(--bg-light);
+    border-left: 4px solid var(--primary-light);
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  /* COLOR THEMES */
+  .s-data .step-num { background: var(--accent-data); }
+  .s-data .step-tag { background: #f1f1f1; color: var(--accent-data); }
+
+  .s-sec .step-num { background: var(--accent-security); }
+  .s-sec .step-tag { background: #e1f5ee; color: var(--accent-security); }
+
+  .s-ai .step-num { background: var(--accent-ai); }
+  .s-ai .step-tag { background: #eeedfe; color: var(--accent-ai); }
+
+  .s-dec .step-num { background: var(--accent-decision); }
+  .s-dec .step-tag { background: #faeeda; color: var(--accent-decision); }
+
+</style>
+</head>
+
+<body>
+
+<div class="page-header">
+  <div class="breadcrumb">Smart Grid Security › System Workflow</div>
+  <h1>Operational Pipeline</h1>
+  <p>A technical walkthrough of the data journey from high-frequency IoT ingestion to decentralized verification.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">End-to-End Processing</div>
+  <h2>How the system operates</h2>
+  <p>The framework follows an 8-stage sequence designed to maintain data integrity while ensuring sub-millisecond detection latency.</p>
+
+  <div class="steps">
+
+    <div class="step s-data">
+      <div class="step-num">1</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: Ingestion</span>
+        <h3>PMU & Smart Meter Telemetry</h3>
+        <p>Sensors capture high-fidelity voltage, current, and frequency phasors at the grid edge.</p>
+        <div class="step-detail">Output: Raw Time-Series Vector</div>
+      </div>
+    </div>
+
+    <div class="step s-data">
+      <div class="step-num">2</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: Preparation</span>
+        <h3>Cleaning & Normalization</h3>
+        <p>Data is filtered for noise and scaled using Min-Max normalization for neural network stability.</p>
+        <div class="step-detail">Output: Normalized Tensor</div>
+      </div>
+    </div>
+
+    <div class="step s-sec">
+      <div class="step-num">3</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: Integrity</span>
+        <h3>SHA-256 Hashing</h3>
+        <p>Cryptographic fingerprints are generated to ensure the data hasn't been altered during transit.</p>
+        <div class="step-detail">Status: Trust-Neutral Verified</div>
+      </div>
+    </div>
+
+    <div class="step s-ai">
+      <div class="step-num">4</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: AI Inference</span>
+        <h3>CNN Spatial Extraction</h3>
+        <p>Convolutional layers identify patterns between different grid nodes and geographical locations.</p>
+      </div>
+    </div>
+
+    <div class="step s-ai">
+      <div class="step-num">5</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: AI Inference</span>
+        <h3>LSTM Temporal Learning</h3>
+        <p>Long Short-Term Memory units analyze the sequence history to detect fault-based trends.</p>
+      </div>
+    </div>
+
+    <div class="step s-dec">
+      <div class="step-num">6</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: Classification</span>
+        <h3>Fault Detection Prediction</h3>
+        <p>Soft-max layer calculates the probability of grid state (0: Normal, 1: Fault).</p>
+      </div>
+    </div>
+
+    <div class="step s-sec">
+      <div class="step-num">7</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: Blockchain</span>
+        <h3>PoM Validation & Logging</h3>
+        <p>High-confidence results are committed to the Proof of Monitoring distributed ledger.</p>
+        <div class="step-detail">Output: Immutable Audit Trail</div>
+      </div>
+    </div>
+
+    <div class="step s-dec">
+      <div class="step-num">8</div>
+      <div class="step-right">
+        <span class="step-tag">Phase: Response</span>
+        <h3>Control & Action</h3>
+        <p>Automated isolation protocols are triggered and grid operators are alerted via dashboard.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
