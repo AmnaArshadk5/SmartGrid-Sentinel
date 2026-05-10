@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiments and Results</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Google Sans', Roboto, Arial, sans-serif; color: #1a1a2e; background: #fff; }
+
+  .page-header { background: #0d2b6b; color: #fff; padding: 48px 40px 44px; }
+  .page-header .breadcrumb { font-size: 13px; color: #8db4e8; margin-bottom: 10px; }
+  .page-header h1 { font-size: 30px; font-weight: 700; }
+  .page-header p { font-size: 16px; color: #c5d8f5; margin-top: 10px; max-width: 620px; line-height: 1.6; }
+
+  .section { padding: 48px 40px; max-width: 960px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #185FA5; margin-bottom: 10px; }
+  .section h2 { font-size: 24px; font-weight: 700; color: #0d2b6b; margin-bottom: 16px; }
+  .section p { font-size: 15px; line-height: 1.75; color: #444; margin-bottom: 12px; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .stat-card {
+    background: #f0f6ff;
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+  .stat-card .val { font-size: 26px; font-weight: 700; color: #0d2b6b; }
+  .stat-card .lbl { font-size: 12px; color: #555; margin-top: 5px; }
+
+  .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .chart-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+  }
+  .chart-card h3 { font-size: 14px; font-weight: 600; color: #0d2b6b; margin-bottom: 16px; }
+  .chart-card canvas { display: block; width: 100% !important; max-height: 220px; }
+
+  .confusion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    max-width: 280px;
+    margin: 16px auto 0;
+  }
+  .cf-cell {
+    border-radius: 8px;
+    padding: 22px 12px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .cf-cell .cf-lbl { font-size: 11px; font-weight: 500; margin-top: 4px; }
+  .cf-tp { background: #0d2b6b; color: #fff; }
+  .cf-fp { background: #fde8e8; color: #a32d2d; }
+  .cf-fn { background: #fde8e8; color: #a32d2d; }
+  .cf-tn { background: #0d2b6b; color: #fff; }
+
+  .setup-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+  .setup-table th { background: #0d2b6b; color: #fff; padding: 10px 14px; text-align: left; }
+  .setup-table td { padding: 10px 14px; border-bottom: 1px solid #e8edf5; color: #333; }
+  .setup-table tr:nth-child(even) td { background: #f8fafd; }
+
+  .finding-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .finding {
+    border-left: 4px solid #0d2b6b;
+    padding: 14px 16px;
+    background: #f8fafd;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+  }
+  .finding strong { color: #0d2b6b; display: block; margin-bottom: 4px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="breadcrumb">Smart Grid Security Project › Experiments and Results</div>
+  <h1>Experiments and Results</h1>
+  <p>Evaluation of the CNN-LSTM + PoM framework on the Kaggle Smart Grid Stability dataset - 60,000 samples, multiple performance metrics.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">Performance summary</div>
+  <h2>Key results at a glance</h2>
+
+  <div class="stat-row">
+    <div class="stat-card"><div class="val">98.15%</div><div class="lbl">Test accuracy</div></div>
+    <div class="stat-card"><div class="val">0.99</div><div class="lbl">Precision</div></div>
+    <div class="stat-card"><div class="val">0.98</div><div class="lbl">Recall</div></div>
+    <div class="stat-card"><div class="val">0.9981</div><div class="lbl">AUC score</div></div>
+    <div class="stat-card"><div class="val">&lt;1 ms</div><div class="lbl">Detection latency</div></div>
+  </div>
+</div>
+
+<div style="background:#f8fafd; border-top:1px solid #e2e8f0; border-bottom:1px solid #e2e8f0;">
+<div class="section">
+  <div class="section-label">Dataset and setup</div>
+  <h2>Dataset used and experiment configuration</h2>
+  <p>The Kaggle Smart Grid Stability Simulated Dataset contains 60,000 labeled samples representing both stable and unstable grid conditions, with parameters including reaction time (τ), power balance (p), voltage deviations, frequency variations, and load metrics.</p>
+
+  <table class="setup-table">
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>Dataset</td><td>Kaggle Smart Grid Stability (60,000 samples)</td></tr>
+    <tr><td>Training / Validation / Test split</td><td>70% / 15% / 15% (stratified)</td></tr>
+    <tr><td>Model</td><td>CNN-LSTM (23,883 parameters)</td></tr>
+    <tr><td>Optimizer</td><td>Adam (lr = 0.001)</td></tr>
+    <tr><td>Epochs</td><td>50 with early stopping</td></tr>
+    <tr><td>Batch size</td><td>32</td></tr>
+    <tr><td>CNN filters</td><td>32, ReLU activation</td></tr>
+    <tr><td>LSTM units</td><td>64</td></tr>
+    <tr><td>Dropout rate</td><td>0.2</td></tr>
+    <tr><td>Loss function</td><td>Binary cross-entropy</td></tr>
+    <tr><td>Environment</td><td>Python 3.9, TensorFlow 2.x, Google Colab, Intel i7, 13 GB RAM</td></tr>
+  </table>
+</div>
+</div>
+
+<div class="section">
+  <div class="section-label">Visual results</div>
+  <h2>Model performance graphs</h2>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Training &amp; validation accuracy</h3>
+      <canvas id="accChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Training &amp; validation loss</h3>
+      <canvas id="lossChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Ablation study - model accuracy comparison</h3>
+      <canvas id="ablChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Latency comparison (log scale, ms)</h3>
+      <canvas id="latChart"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid" style="margin-top:24px;">
+    <div class="chart-card">
+      <h3>Confusion matrix - fault detection</h3>
+      <div class="confusion-grid">
+        <div class="cf-cell cf-tp">4130<div class="cf-lbl">True Normal</div></div>
+        <div class="cf-cell cf-fp">192<div class="cf-lbl">False Fault</div></div>
+        <div class="cf-cell cf-fn">100<div class="cf-lbl">False Normal</div></div>
+        <div class="cf-cell cf-tn">7578<div class="cf-lbl">True Fault</div></div>
+      </div>
+      <p style="text-align:center; font-size:12px; color:#888; margin-top:12px;">Rows: Actual class &nbsp;|&nbsp; Columns: Predicted class</p>
+    </div>
+    <div class="chart-card">
+      <h3>Baseline model comparison</h3>
+      <canvas id="baseChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<div style="background:#f8fafd; border-top:1px solid #e2e8f0;">
+<div class="section">
+  <div class="section-label">Key findings</div>
+  <h2>Key insights from results</h2>
+
+  <div class="finding-grid">
+    <div class="finding"><strong>Spatial + temporal fusion wins</strong>CNN-LSTM (98.15%) significantly outperforms CNN-only (93.1%) and LSTM-only (94.4%), confirming that both spatial and temporal modeling are essential.</div>
+    <div class="finding"><strong>PoM adds security at zero latency cost</strong>Adding the PoM layer raised accuracy slightly to 98.2% and added tamper-proof logging with no measurable latency increase.</div>
+    <div class="finding"><strong>145× faster than standard blockchain</strong>Standard blockchain: 145.2 ms. Proposed PoM hybrid: 0.82 ms. The selective validation strategy eliminates 99% of unnecessary consensus operations.</div>
+    <div class="finding"><strong>Reaction time (τ) is the top feature</strong>Feature importance analysis reveals τ and power imbalance (p) are the strongest predictors of grid instability - aligning with domain knowledge.</div>
+    <div class="finding"><strong>Near-perfect class separation</strong>AUC of 0.9981 and bimodal prediction confidence distribution confirm the model rarely confuses stable and unstable grid states.</div>
+    <div class="finding"><strong>Optimal PoM threshold at 0.95</strong>Threshold analysis shows 0.95 provides the best trade-off: minimal false blockchain writes while catching all genuine high-confidence faults.</div>
+  </div>
+</div>
+</div>
+
+<script>
+const epochs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+const trainAcc = [0.882,0.921,0.943,0.956,0.963,0.968,0.972,0.974,0.976,0.977,0.978,0.979,0.980,0.980,0.981,0.981,0.981,0.981,0.982,0.982];
+const valAcc   = [0.896,0.925,0.945,0.956,0.962,0.966,0.970,0.973,0.975,0.976,0.977,0.978,0.979,0.980,0.980,0.981,0.981,0.981,0.981,0.981];
+const trainLoss= [0.25,0.19,0.15,0.12,0.10,0.09,0.08,0.07,0.07,0.06,0.06,0.06,0.06,0.05,0.05,0.05,0.05,0.05,0.05,0.05];
+const valLoss  = [0.22,0.18,0.14,0.12,0.10,0.09,0.08,0.08,0.07,0.07,0.06,0.06,0.06,0.06,0.05,0.05,0.05,0.05,0.05,0.05];
+
+const lineOpts = (datasets) => ({
+  type: 'line',
+  data: { labels: epochs.map(e=>'Ep '+e), datasets },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 16 } } },
+    scales: {
+      x: { ticks: { font: { size: 10 } } },
+      y: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+new Chart(document.getElementById('accChart'), lineOpts([
+  { label:'Training', data: trainAcc, borderColor:'#185FA5', backgroundColor:'transparent', borderWidth:2, pointRadius:2 },
+  { label:'Validation', data: valAcc, borderColor:'#1D9E75', backgroundColor:'transparent', borderWidth:2, borderDash:[4,4], pointRadius:2 }
+]));
+
+new Chart(document.getElementById('lossChart'), lineOpts([
+  { label:'Training', data: trainLoss, borderColor:'#185FA5', backgroundColor:'transparent', borderWidth:2, pointRadius:2 },
+  { label:'Validation', data: valLoss, borderColor:'#1D9E75', backgroundColor:'transparent', borderWidth:2, borderDash:[4,4], pointRadius:2 }
+]));
+
+new Chart(document.getElementById('ablChart'), {
+  type: 'bar',
+  data: {
+    labels: ['CNN only','LSTM only','CNN-LSTM','CNN-LSTM+PoM'],
+    datasets:[{ label:'Accuracy (%)', data:[93.1,94.4,98.15,98.2], backgroundColor:['#B5D4F4','#B5D4F4','#185FA5','#0d2b6b'], borderRadius:5 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 88, max: 100, ticks: { font: { size: 10 }, callback: v=>v+'%' } },
+      x: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+new Chart(document.getElementById('latChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Standard blockchain','Centralized AI','Proposed PoM'],
+    datasets:[{ label:'Latency (ms)', data:[145.2,5.4,0.82], backgroundColor:['#E24B4A','#EF9F27','#1D9E75'], borderRadius:5 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { type:'logarithmic', ticks: { font: { size: 10 }, callback: v=>v+'ms' } },
+      x: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+new Chart(document.getElementById('baseChart'), {
+  type: 'bar',
+  data: {
+    labels: ['ML-Only','Blockchain-Only','Hybrid [13]','Proposed PoM'],
+    datasets:[{ label:'Accuracy (%)', data:[94.2,0,96.5,98.2], backgroundColor:['#B5D4F4','#F09595','#9FE1CB','#0d2b6b'], borderRadius:5 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 0, max: 100, ticks: { font: { size: 10 }, callback: v=>v+'%' } },
+      x: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
